@@ -19,11 +19,6 @@ app.get("/flores", (req, res) => {
     res.json(flores);
 });
 
-//selecionar a flor de acordo com o ID
-app.get("/flores/:id", (req, res) => {
-    const flor = flores.find(flor => flor.id === parseInt(req.params.id)); //garantir que o id seja um número inteiro
-    if (!flor) return res.status(404).send("Flor não encontrada. Tente novamente..."); //imprimir caso o id não exista
-    res.json(flor)});
 
 //cadastrar uma nova flor
 app.post("/flores", (req, res) => {
@@ -124,6 +119,13 @@ app.get("/flores/mediaPreco", (req, res) => {
     const mediaPreco = soma/total;
     res.json({ mediaPreco: mediaPreco.toFixed(2) }); //limitar p/ 2 casas decimais
 });
+
+//selecionar a flor de acordo com o ID
+app.get("/flores/:id", (req, res) => {
+    const flor = flores.find(flor => flor.id === parseInt(req.params.id)); //garantir que o id seja um número inteiro
+    if (!flor) return res.status(404).send("Flor não encontrada. Tente novamente..."); //imprimir caso o id não exista
+    res.json(flor)});
+
     
 
 
